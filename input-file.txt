@@ -1,0 +1,147 @@
+Organization of this document
+Types of streams
+Streams Promises API
+stream.pipeline(source[, ...transforms], destination[, options])
+stream.pipeline(streams[, options])
+stream.finished(stream[, options])
+Object mode
+Buffering
+API for stream consumers
+Writable streams
+Class: stream.Writable
+Event: 'close'
+Event: 'drain'
+Event: 'error'
+Event: 'finish'
+Event: 'pipe'
+Event: 'unpipe'
+writable.cork()
+writable.destroy([error])
+writable.closed
+writable.destroyed
+writable.end([chunk[, encoding]][, callback])
+writable.setDefaultEncoding(encoding)
+writable.uncork()
+writable.writable
+writable.writableAborted
+writable.writableEnded
+writable.writableCorked
+writable.errored
+writable.writableFinished
+writable.writableHighWaterMark
+writable.writableLength
+writable.writableNeedDrain
+writable.writableObjectMode
+writable.write(chunk[, encoding][, callback])
+Readable streams
+Two reading modes
+Three states
+Choose one API style
+Class: stream.Readable
+Event: 'close'
+Event: 'data'
+Event: 'end'
+Event: 'error'
+Event: 'pause'
+Event: 'readable'
+Event: 'resume'
+readable.destroy([error])
+readable.closed
+readable.destroyed
+readable.isPaused()
+readable.pause()
+readable.pipe(destination[, options])
+readable.read([size])
+readable.readable
+readable.readableAborted
+readable.readableDidRead
+readable.readableEncoding
+readable.readableEnded
+readable.errored
+readable.readableFlowing
+readable.readableHighWaterMark
+readable.readableLength
+readable.readableObjectMode
+readable.resume()
+readable.setEncoding(encoding)
+readable.unpipe([destination])
+readable.unshift(chunk[, encoding])
+readable.wrap(stream)
+readable[Symbol.asyncIterator]()
+readable.compose(stream[, options])
+readable.iterator([options])
+readable.map(fn[, options])
+readable.filter(fn[, options])
+readable.forEach(fn[, options])
+readable.toArray([options])
+readable.some(fn[, options])
+readable.find(fn[, options])
+readable.every(fn[, options])
+readable.flatMap(fn[, options])
+readable.drop(limit[, options])
+readable.take(limit[, options])
+readable.asIndexedPairs([options])
+readable.reduce(fn[, initial[, options]])
+Duplex and transform streams
+Class: stream.Duplex
+duplex.allowHalfOpen
+Class: stream.Transform
+transform.destroy([error])
+stream.finished(stream[, options], callback)
+stream.pipeline(source[, ...transforms], destination, callback)
+stream.pipeline(streams, callback)
+stream.compose(...streams)
+stream.Readable.from(iterable[, options])
+stream.Readable.fromWeb(readableStream[, options])
+stream.Readable.isDisturbed(stream)
+stream.isErrored(stream)
+stream.isReadable(stream)
+stream.Readable.toWeb(streamReadable[, options])
+stream.Writable.fromWeb(writableStream[, options])
+stream.Writable.toWeb(streamWritable)
+stream.Duplex.from(src)
+stream.Duplex.fromWeb(pair[, options])
+stream.Duplex.toWeb(streamDuplex)
+stream.addAbortSignal(signal, stream)
+stream.getDefaultHighWaterMark(objectMode)
+stream.setDefaultHighWaterMark(objectMode, value)
+API for stream implementers
+Simplified construction
+Implementing a writable stream
+new stream.Writable([options])
+writable._construct(callback)
+writable._write(chunk, encoding, callback)
+writable._writev(chunks, callback)
+writable._destroy(err, callback)
+writable._final(callback)
+Errors while writing
+An example writable stream
+Decoding buffers in a writable stream
+Implementing a readable stream
+new stream.Readable([options])
+readable._construct(callback)
+readable._read(size)
+readable._destroy(err, callback)
+readable.push(chunk[, encoding])
+Errors while reading
+An example counting stream
+Implementing a duplex stream
+new stream.Duplex(options)
+An example duplex stream
+Object mode duplex streams
+Implementing a transform stream
+new stream.Transform([options])
+Event: 'end'
+Event: 'finish'
+transform._flush(callback)
+transform._transform(chunk, encoding, callback)
+Class: stream.PassThrough
+Additional notes
+Streams compatibility with async generators and async iterators
+Consuming readable streams with async iterators
+Creating readable streams with async generators
+Piping to writable streams from async iterators
+Compatibility with older Node.js versions
+readable.read(0)
+readable.push('')
+highWaterMark discrepancy after calling readable.setEncoding()
