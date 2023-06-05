@@ -8,7 +8,7 @@ process.stdin.setEncoding('utf-8');
 const appArguments = [...process.argv].slice(2);
 
 function getArguments(...fullCommand) {
-console.log(fullCommand);
+
   if (fullCommand.length < 3) {
     console.log('Select "input file path", "output file path" and operation');
   }
