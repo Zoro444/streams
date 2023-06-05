@@ -5,16 +5,10 @@ import os from "os";
 
 process.stdin.setEncoding('utf-8');
 
-console.log(`Welcome ${os.userInfo().username}!\n
-This is a command-line application that reads data from an input file,
-performs a specified operation on the data using streams, 
-and writes the transformed data to an output file.
-Select input file path, output file path and operation!`);
+const appArguments = [...process.argv].slice(2);
 
-process.stdin.on('data', (data) => {
-  data = data.trim();
-  const fullCommand = data.split(' ');
-  
+function getArguments(...fullCommand) {
+console.log(fullCommand);
   if (fullCommand.length < 3) {
     console.log('Select "input file path", "output file path" and operation');
   }
@@ -31,4 +25,6 @@ process.stdin.on('data', (data) => {
       }
     })
   }
-});
+};
+
+getArguments(...appArguments);
